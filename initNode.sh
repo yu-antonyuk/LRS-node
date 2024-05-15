@@ -23,5 +23,3 @@ chmod +x runnode.sh
 # Edit crontab to run the script at reboot
 (crontab -l ; echo "@reboot sleep 60 && cd /path/to/script && ./runnode.sh") | crontab -
 
-# Reboot the system
-sudo reboot
