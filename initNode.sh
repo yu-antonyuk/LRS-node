@@ -1,5 +1,5 @@
 #!/bin/bash
-larissa_keyz
+KEY
 # Update package list and upgrade packages
 apt-get update && apt-get install -y \
     ca-certificates \
