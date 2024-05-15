@@ -12,8 +12,13 @@ wget https://github.com/LarissaBlockchain/Core/releases/download/v1.12.0/geth-ub
 cat <<EOF > runnode.sh
 #!/bin/bash
 
-# Set permissions and run Geth with manual input for $KEY
+# Set permissions for Geth
 chmod +x geth-ubuntu-x86_64
+
+# Prompt for the $KEY
+read -p "Enter the value for KEY: " KEY
+
+# Run Geth with the provided $KEY
 ./geth-ubuntu-x86_64 --larissa.node=1 -larissa.node.user.key="\$KEY"
 EOF
 
@@ -22,4 +27,3 @@ chmod +x runnode.sh
 
 # Edit crontab to run the script at reboot
 (crontab -l ; echo "@reboot sleep 60 && cd /path/to/script && ./runnode.sh") | crontab -
-
