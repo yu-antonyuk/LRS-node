@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Update package list and upgrade packages
-sudo apt-get update
-sudo apt-get dist-upgrade -y
+apt-get update && apt-get install -y \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 # Download LarissaBlockchain Core
 wget https://github.com/LarissaBlockchain/Core/releases/download/v1.12.0/geth-ubuntu-x86_64
