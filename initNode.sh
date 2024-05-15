@@ -5,6 +5,9 @@ apt-get update && apt-get install -y \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
+# Prompt for the $KEY
+read -p "Enter the value for KEY: " KEY
+
 # Download Geth
 wget https://github.com/LarissaBlockchain/Core/releases/download/v1.12.0/geth-ubuntu-x86_64
 
@@ -15,8 +18,6 @@ cat <<EOF > runnode.sh
 # Set permissions for Geth
 chmod +x geth-ubuntu-x86_64
 
-# Prompt for the $KEY
-read -p "Enter the value for KEY: " KEY
 
 # Run Geth with the provided $KEY
 ./geth-ubuntu-x86_64 --larissa.node=1 -larissa.node.user.key="\$KEY"
