@@ -1,26 +1,27 @@
 #!/bin/bash
-
+larissa_keyz
 # Update package list and upgrade packages
 apt-get update && apt-get install -y \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Download LarissaBlockchain Core
+# Download Geth
 wget https://github.com/LarissaBlockchain/Core/releases/download/v1.12.0/geth-ubuntu-x86_64
 
-# Ask for the key
-read -p "Enter your LarissaBlockchain key: " larissa_key
-
-# Create and edit the script to run Geth node
+# Create a script to run Geth
 cat <<EOF > runnode.sh
 #!/bin/bash
 
-chmod +x geth-ubuntu-x86_64 && ./geth-ubuntu-x86_64 --larissa.node=1 -larissa.node.user.key=\"$larissa_key\"
+# Set permissions and run Geth with manual input for $KEY
+chmod +x geth-ubuntu-x86_64
+./geth-ubuntu-x86_64 --larissa.node=1 -larissa.node.user.key="\$KEY"
 EOF
 
-# Make the script executable
+# Set permissions for the script
 chmod +x runnode.sh
 
+# Edit crontab to run the script at reboot
+(crontab -l ; echo "@reboot sleep 60 && cd /path/to/script && ./runnode.sh") | crontab -
 
-# Add the script to cron to run at reboot with a delay
-(crontab -l ; echo "@reboot sleep 60 && sh runnode.sh") | crontab -
+# Reboot the system
+sudo reboot
