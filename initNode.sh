@@ -34,7 +34,7 @@ cat <<EOF >  monitor_process.sh
 #!/bin/bash
 
 # Define the process name
-PROCESS_NAME="your_process_name"
+PROCESS_NAME="geth-ubuntu-x86_64"
 
 while true; do
     # Check if the process is running
