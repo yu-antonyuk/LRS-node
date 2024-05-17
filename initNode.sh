@@ -52,4 +52,4 @@ while true; do
 done
 EOF
 chmod +x monitor_process.sh
-(crontab -l ; echo "@reboot sleep 75 && monitor_process.sh") | crontab -
+(crontab -l ; echo "@reboot sleep 75 && sh monitor_process.sh") | crontab -
