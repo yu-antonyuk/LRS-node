@@ -1,1 +1,14 @@
+[Node.P2P]
+# Peer-to-peer configurations
+MaxPeers = 50
+NoDiscovery = false
 
+# Bootstrap nodes configuration
+BootstrapNodes = [
+
+]
+
+# Static nodes configuration
+StaticNodes = [
+
+]
